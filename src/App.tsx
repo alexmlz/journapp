@@ -28,7 +28,7 @@ function App() {
         newId +
         " neuer Inhalt für ein Journal die nummer vorne soll nur zeigen das es unterscheidliche sind ",
     };
-    setJournals([newJournal, ...journals]);
+    //setJournals([newJournal, ...journals]);
 
     journalService
       .create(newJournal)
