@@ -4,7 +4,7 @@ let baseURL;
 if (domain === "localhost") {
   baseURL = "http://127.0.0.1:8000/newApi/localhost";
 } else {
-  baseURL = "newApi" + domain;
+  baseURL = "newApi/" + domain;
 }
 
 export default axios.create({
