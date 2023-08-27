@@ -1,9 +1,17 @@
 import ListGroup from "./components/ListGroup";
 import journalService, { Journal } from "./services/journal-service";
 import useJournals from "./hooks/useJournals";
+import useUsers from "./hooks/useUsers";
+import Login from "./components/login";
+import Register from "./components/register";
+import { useState } from "react";
 
 function App() {
   const { journals, error, isLoading, setJournals, setError } = useJournals();
+  const { isLoggedIn } = useUsers();
+
+  const [setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState();
 
   const handleSelectItem = (item: string) => {
     console.log(item);
@@ -49,20 +57,36 @@ function App() {
     });
   };
 
+  const RegisterLogin = ({ setUser }: any) => {
+    return (
+      <div className="register-login">
+        <Login setUser={setUser} setCurrentUser={setCurrentUser} />
+        <p>If you do not have an account yet, please register!</p>
+        <Register setUser={setUser} setCurrentUser={setCurrentUser} />
+      </div>
+    );
+  };
+
   return (
     <>
-      {error && <p className="text-danger">{error}</p>}
-      {isLoading ? (
-        <div className="spinner-border"></div>
+      {currentUser || isLoggedIn ? (
+        <>
+          {error && <p className="text-danger">{error}</p>}
+          {isLoading ? (
+            <div className="spinner-border"></div>
+          ) : (
+            <ListGroup
+              items={journals}
+              heading="Entries"
+              onSelectItem={handleSelectItem}
+              onDeleteItem={handleDeleteItem}
+              onAddItem={handleAddItem}
+              onUpdateItem={handleUpdateItem}
+            />
+          )}
+        </>
       ) : (
-        <ListGroup
-          items={journals}
-          heading="Entries"
-          onSelectItem={handleSelectItem}
-          onDeleteItem={handleDeleteItem}
-          onAddItem={handleAddItem}
-          onUpdateItem={handleUpdateItem}
-        />
+        <RegisterLogin setUser={setUser} />
       )}
     </>
   );
