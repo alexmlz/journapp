@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { register } from "../services/user-service.js";
 import FormInputs from "../common/FormInputs.js";
-function Register({ setUser, setCurrentUser }: any) {
+function Register({ setCurrentUser }: any) {
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -12,9 +12,9 @@ function Register({ setUser, setCurrentUser }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response: any = await register(newUser);
-      setUser(response.data);
-      setCurrentUser(true);
+      register(newUser, setCurrentUser);
+      //setUser(response.data);
+      //setCurrentUser(true);
     } catch (ex: any) {
       if (ex.response && ex.response.status === 400) {
         setErrors(ex.response.data);

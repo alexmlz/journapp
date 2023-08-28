@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Journal } from "../services/journal-service";
+import { Link } from "react-router-dom";
 
 interface Props {
   items: Journal[];
   heading: string;
-  onSelectItem: (item: string) => void;
+  //onSelectItem: (item: string) => void;
   onDeleteItem: (item: Journal) => void;
   onAddItem: () => void;
   onUpdateItem: (item: Journal) => void;
@@ -13,7 +14,7 @@ interface Props {
 function ListGroup({
   items,
   heading,
-  onSelectItem,
+  //onSelectItem,
   onDeleteItem,
   onAddItem,
   onUpdateItem,
@@ -37,7 +38,7 @@ function ListGroup({
             }
             key={item.id}
           >
-            <a
+            {/*             <a
               onClick={() => {
                 setSelectedIndex(index);
                 onSelectItem(item.subject);
@@ -45,7 +46,8 @@ function ListGroup({
             >
               {" "}
               {item.subject}
-            </a>
+            </a> */}
+            <Link to={`/journals/${item.id}`}>{item.subject}</Link>
             <div>
               <button
                 className="btn btn-outline-secondary mx-1"

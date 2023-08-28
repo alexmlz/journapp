@@ -9,7 +9,7 @@ const useUsers = () => {
     getUser(setLoggedIn);
   }, []);
 
-  return { isLoggedIn };
+  return { isLoggedIn, setLoggedIn };
 };
 
 export default useUsers;

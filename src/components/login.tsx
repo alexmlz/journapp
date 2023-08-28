@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { login } from "../services/user-service.js";
 import FormInputs from "../common/FormInputs.js";
-function Login({ setUser, setCurrentUser }: any) {
+function Login({ setCurrentUser }: any) {
   const [loginUser, setLoginUser] = useState({
     username: "",
     password: "",
@@ -11,9 +11,9 @@ function Login({ setUser, setCurrentUser }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await login(loginUser);
-      setUser(response.data);
-      setCurrentUser(true);
+      login(loginUser, setCurrentUser);
+      //setUser(response.data);
+      // setCurrentUser(true);
     } catch (ex: any) {
       if (ex.response && ex.response.status === 400) {
         setErrors(ex.response.data);
