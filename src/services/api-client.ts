@@ -7,9 +7,9 @@ axios.defaults.withCredentials = true;
 const domain = window.location.hostname;
 let baseURL;
 if (domain === "localhost" || domain === "127.0.0.1") {
-  baseURL = "http://127.0.0.1:8000/newApi/localhost";
+  baseURL = "http://127.0.0.1:8000/newApi";
 } else {
-  baseURL = "newApi/" + domain;
+  baseURL = "newApi";
 }
 
 export default axios.create({
