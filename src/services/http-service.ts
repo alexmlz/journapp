@@ -33,7 +33,7 @@ class HttpService {
   }
 
   get(id: number | string) {
-    return apiClient.get("journaltest/" + id + "/");
+    return apiClient.get(this.updateEndpoint + id + "/");
   }
 }
 
